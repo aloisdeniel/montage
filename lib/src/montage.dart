@@ -20,8 +20,8 @@ class Montage extends StatelessWidget {
     return Provider.of<_Wrapper<MontageController>>(context).value;
   }
 
-  static ValueListenable<MontageAnimation?> currentOf(BuildContext context) {
-    return controllerOf(context).current;
+  static MontageAnimation? currentOf(BuildContext context) {
+    return Provider.of<MontageAnimation?>(context);
   }
 
   static Future<void> play(
@@ -33,7 +33,10 @@ class Montage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Provider.value(
       value: _Wrapper(controller),
-      child: child,
+      child: ValueListenableProvider<MontageAnimation?>.value(
+        value: controller.current,
+        child: child,
+      ),
     );
   }
 }

@@ -148,7 +148,7 @@ class ExampleScene extends StatelessWidget {
                       },
                     )
                   ],
-                )
+                ),
               ],
             ),
           ),

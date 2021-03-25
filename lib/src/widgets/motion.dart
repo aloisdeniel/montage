@@ -97,21 +97,14 @@ class Motion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider.value(
-      value: motion,
-      child: ValueListenableBuilder<MontageAnimation?>(
-        valueListenable: Montage.currentOf(context),
-        child: child,
-        builder: (context, current, child) {
-          final animation = Montage.controllerOf(context);
-          if (current == null) {
-            return fallback(context, MontageAnimation.none, animation, child);
-          }
-          var builder = motion[current] ?? fallback;
-          return builder(context, current, animation, child);
-        },
-      ),
-    );
+    final current = Montage.currentOf(context);
+
+    final animation = Montage.controllerOf(context);
+    if (current == null) {
+      return fallback(context, MontageAnimation.none, animation, child);
+    }
+    var builder = motion[current] ?? fallback;
+    return builder(context, current, animation, child);
   }
 }
 
