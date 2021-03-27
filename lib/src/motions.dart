@@ -398,6 +398,7 @@ abstract class Motions {
     required Rect endAmount,
     BoxDecoration? endDecoration,
     EdgeInsets padding = EdgeInsets.zero,
+    EdgeInsets? endPadding,
   }) =>
       combine([
         clip(
@@ -408,6 +409,7 @@ abstract class Motions {
           decoration: decoration,
           endDecoration: endDecoration,
           padding: padding,
+          endPadding: endPadding,
         ),
       ]);
 
@@ -448,7 +450,7 @@ abstract class Motions {
     required BoxDecoration decoration,
     BoxDecoration? endDecoration,
     EdgeInsets padding = EdgeInsets.zero,
-    EdgeInsets endPadding = EdgeInsets.zero,
+    EdgeInsets? endPadding,
   }) =>
       (
         BuildContext context,
@@ -467,7 +469,7 @@ abstract class Motions {
             ),
             padding: EdgeInsets.lerp(
               padding,
-              endPadding,
+              endPadding ?? padding,
               animation.value,
             ),
             child: child,
@@ -480,6 +482,7 @@ abstract class Motions {
     required BoxDecoration decoration,
     BoxDecoration? endDecoration,
     EdgeInsets padding = EdgeInsets.zero,
+    EdgeInsets? endPadding,
   }) =>
       clipBox(
         decoration: decoration,
@@ -487,6 +490,7 @@ abstract class Motions {
         endAmount: Offset(0, 0) & Size(1, 1),
         endDecoration: endDecoration,
         padding: padding,
+        endPadding: endPadding,
       );
 
   /// A [clipBox] that opens from right.
@@ -494,6 +498,7 @@ abstract class Motions {
     required BoxDecoration decoration,
     BoxDecoration? endDecoration,
     EdgeInsets padding = EdgeInsets.zero,
+    EdgeInsets? endPadding,
   }) =>
       clipBox(
         decoration: decoration,
@@ -501,6 +506,7 @@ abstract class Motions {
         endAmount: Offset(0, 0) & Size(1, 1),
         endDecoration: endDecoration,
         padding: padding,
+        endPadding: endPadding,
       );
 
   /// A [clipBox] that opens from top.
@@ -508,6 +514,7 @@ abstract class Motions {
     required BoxDecoration decoration,
     BoxDecoration? endDecoration,
     EdgeInsets padding = EdgeInsets.zero,
+    EdgeInsets? endPadding,
   }) =>
       clipBox(
         decoration: decoration,
@@ -515,6 +522,7 @@ abstract class Motions {
         endAmount: Offset(0, 0) & Size(1, 1),
         endDecoration: endDecoration,
         padding: padding,
+        endPadding: endPadding,
       );
 
   /// A [clipBox] that opens from bottom.
@@ -522,6 +530,7 @@ abstract class Motions {
     required BoxDecoration decoration,
     BoxDecoration? endDecoration,
     EdgeInsets padding = EdgeInsets.zero,
+    EdgeInsets? endPadding,
   }) =>
       clipBox(
         decoration: decoration,
@@ -529,6 +538,7 @@ abstract class Motions {
         endAmount: Offset(0, 0) & Size(1, 1),
         endDecoration: endDecoration,
         padding: padding,
+        endPadding: endPadding,
       );
 
   /// A [clipBox] that opens from center.
@@ -536,6 +546,7 @@ abstract class Motions {
     required BoxDecoration decoration,
     BoxDecoration? endDecoration,
     EdgeInsets padding = EdgeInsets.zero,
+    EdgeInsets? endPadding,
   }) =>
       clipBox(
         decoration: decoration,
@@ -543,6 +554,7 @@ abstract class Motions {
         endAmount: Offset(0, 0) & Size(1, 1),
         endDecoration: endDecoration,
         padding: padding,
+        endPadding: endPadding,
       );
 
   /// A [clipBox] that closes from right.
@@ -550,6 +562,7 @@ abstract class Motions {
     required BoxDecoration decoration,
     BoxDecoration? endDecoration,
     EdgeInsets padding = EdgeInsets.zero,
+    EdgeInsets? endPadding,
   }) =>
       clipBox(
         decoration: decoration,
@@ -557,6 +570,7 @@ abstract class Motions {
         endAmount: Offset(0, 0) & Size(0, 1),
         endDecoration: endDecoration,
         padding: padding,
+        endPadding: endPadding,
       );
 
   /// A [clipBox] that closes from left.
@@ -564,6 +578,7 @@ abstract class Motions {
     required BoxDecoration decoration,
     BoxDecoration? endDecoration,
     EdgeInsets padding = EdgeInsets.zero,
+    EdgeInsets? endPadding,
   }) =>
       clipBox(
         decoration: decoration,
@@ -571,6 +586,7 @@ abstract class Motions {
         endAmount: Offset(1, 0) & Size(0, 1),
         endDecoration: endDecoration,
         padding: padding,
+        endPadding: endPadding,
       );
 
   /// A [clipBox] that closes from top.
@@ -578,6 +594,7 @@ abstract class Motions {
     required BoxDecoration decoration,
     BoxDecoration? endDecoration,
     EdgeInsets padding = EdgeInsets.zero,
+    EdgeInsets? endPadding,
   }) =>
       clipBox(
         decoration: decoration,
@@ -585,6 +602,7 @@ abstract class Motions {
         endAmount: Offset(0, 0) & Size(1, 0),
         endDecoration: endDecoration,
         padding: padding,
+        endPadding: endPadding,
       );
 
   /// A [clipBox] that closes from top.
@@ -592,6 +610,7 @@ abstract class Motions {
     required BoxDecoration decoration,
     BoxDecoration? endDecoration,
     EdgeInsets padding = EdgeInsets.zero,
+    EdgeInsets? endPadding,
   }) =>
       clipBox(
         decoration: decoration,
@@ -599,6 +618,7 @@ abstract class Motions {
         endAmount: Offset(0, 1) & Size(1, 0),
         endDecoration: endDecoration,
         padding: padding,
+        endPadding: endPadding,
       );
 
   /// A [clipBox] that closes from all sides to center.
@@ -606,6 +626,7 @@ abstract class Motions {
     required BoxDecoration decoration,
     BoxDecoration? endDecoration,
     EdgeInsets padding = EdgeInsets.zero,
+    EdgeInsets? endPadding,
   }) =>
       clipBox(
         decoration: decoration,
@@ -613,6 +634,7 @@ abstract class Motions {
         endAmount: Offset(0.5, 0.5) & Size(0, 0),
         endDecoration: endDecoration,
         padding: padding,
+        endPadding: endPadding,
       );
 }
 

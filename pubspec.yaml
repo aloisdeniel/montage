@@ -1,6 +1,6 @@
 name: montage
 description: Organize your animations.
-version: 0.1.1
+version: 0.1.5
 homepage: https://github.com/aloisdeniel/montage
 
 environment:

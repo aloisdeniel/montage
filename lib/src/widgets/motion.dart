@@ -24,8 +24,10 @@ class ReferenceMotionWidgetBuilder {
   ) {
     final builders =
         Provider.of<Map<MontageAnimation, MotionWidgetBuilder>>(context);
-    final builder = builders[reference];
-    if (builder == null) throw Exception('Reference to an undefined motion');
+    var builder = builders[reference];
+    if (builder == null) {
+      builder = Provider.of<MotionWidgetBuilder>(context); // Fallback
+    }
     return builder(context, current, animation, child);
   }
 }
@@ -59,11 +61,6 @@ class Motion extends StatelessWidget {
   }) {
     final result = <Widget>[];
 
-    final baseCurve = Interval(
-      start,
-      end,
-    );
-
     final totalDuration =
         children.length.toDouble() - (children.length - 1) * overlap;
     for (var i = 0; i < children.length; i++) {
@@ -72,9 +69,12 @@ class Motion extends StatelessWidget {
       final childEnd = (i - (i * overlap) + 1) / totalDuration;
 
       final interval = Interval(
-        childStart,
-        childEnd,
-        curve: baseCurve,
+        start,
+        end,
+        curve: Interval(
+          childStart,
+          childEnd,
+        ),
       );
       final childMotion = motion(
         child,
@@ -97,14 +97,24 @@ class Motion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final current = Montage.currentOf(context);
+    return Provider<Map<MontageAnimation, MotionWidgetBuilder>>.value(
+      value: motion,
+      child: Provider<MotionWidgetBuilder>.value(
+        value: fallback,
+        child: Builder(
+          builder: (context) {
+            final current = Montage.currentOf(context);
 
-    final animation = Montage.controllerOf(context);
-    if (current == null) {
-      return fallback(context, MontageAnimation.none, animation, child);
-    }
-    var builder = motion[current] ?? fallback;
-    return builder(context, current, animation, child);
+            final animation = Montage.controllerOf(context);
+            if (current == null) {
+              return fallback(context, MontageAnimation.none, animation, child);
+            }
+            var builder = motion[current] ?? fallback;
+            return builder(context, current, animation, child);
+          },
+        ),
+      ),
+    );
   }
 }
 
